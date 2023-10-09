@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-deployment
+spec:
+  replicas: 1  # Number of Nginx replicas you want
+  selector:
+    matchLabels:
+      app: alpine
+  template:
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      containers:
+      - name: alpine
+        image: public.ecr.aws/nginx/nginx:mainline-alpine  # Use the Nginx Docker image
+        ports:
+        - containerPort: 80  # Port to expose
